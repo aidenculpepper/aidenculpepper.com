@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My Simple Website</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Redirect Page</title>
+    <script>
+      window.onload = function () {
+        // Use JavaScript to navigate to the "about:blank" page and display the message.
+        window.location.href = "about:blank";
+        document.write("Hello, World!");
+      };
+    </script>
   </head>
   <body>
-    <header>
-      <h1>Welcome to My Website</h1>
-    </header>
-    <main>
-      <h2>About Me</h2>
-      <p>This is a simple website created with HTML and CSS.</p>
-      <h2>Contact Information</h2>
-      <p>Email: example@email.com</p>
-      <p>Phone: (123) 456-7890</p>
-    </main>
+    <!-- Content for browsers that do not support JavaScript or have it disabled -->
+    <p>If you are not redirected, <a href="about:blank">click here</a>.</p>
   </body>
 </html>

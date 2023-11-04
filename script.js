@@ -1,31 +1,75 @@
-// Required dependencies
-const http = require('http');
-const request = require('request');
+(function ($, window, undefined) {
+	$.fn.marqueeify = function (options) {
+		var settings = $.extend({
+			horizontal: true,
+			vertical: true,
+			speed: 100, // In pixels per second
+			container: $(this).parent(),
+			bumpEdge: function () {}
+		}, options);
+		
+		return this.each(function () {
+			var containerWidth, containerHeight, elWidth, elHeight, move, getSizes,
+				$el = $(this);
 
-// Create an HTTP server
-const server = http.createServer((clientReq, clientRes) => {
-  const url = clientReq.url;
-  const options = {
-    url: url,
-    method: clientReq.method,
-    headers: clientReq.headers,
-  };
+			getSizes = function () {
+				containerWidth = settings.container.outerWidth();
+				containerHeight = settings.container.outerHeight();
+				elWidth = $el.outerWidth();
+				elHeight = $el.outerHeight();
+			};
 
-  // Send the client request to the target server
-  request(options, (error, targetRes, targetBody) => {
-    if (!error && targetRes.statusCode === 200) {
-      clientRes.writeHead(targetRes.statusCode, targetRes.headers);
-      clientRes.end(targetBody);
-    } else {
-      // Handle errors or other responses as needed
-      clientRes.writeHead(500);
-      clientRes.end('Proxy error');
-    }
-  });
-});
+			move = {
+				right: function () {
+					$el.animate({left: (containerWidth - elWidth)}, {duration: ((containerWidth/settings.speed) * 1000), queue: false, easing: "linear", complete: function () {
+						settings.bumpEdge();
+						move.left();
+					}});
+				},
+				left: function () {
+					$el.animate({left: 0}, {duration: ((containerWidth/settings.speed) * 1000), queue: false, easing: "linear", complete: function () {
+						settings.bumpEdge();
+						move.right();
+					}});
+				},
+				down: function () {
+					$el.animate({top: (containerHeight - elHeight)}, {duration: ((containerHeight/settings.speed) * 1000), queue: false, easing: "linear", complete: function () {
+						settings.bumpEdge();
+						move.up();
+					}});
+				},
+				up: function () {
+					$el.animate({top: 0}, {duration: ((containerHeight/settings.speed) * 1000), queue: false, easing: "linear", complete: function () {
+						settings.bumpEdge();
+						move.down();
+					}});
+				}
+			};
 
-// Start the server
-const port = 3000;
-server.listen(port, () => {
-  console.log(`Proxy server is running on port ${port}`);
+			getSizes();
+
+			if (settings.horizontal) {
+				move.right();
+			}
+			if (settings.vertical) {
+				move.down();
+			}
+
+      // Make that shit responsive!
+      $(window).resize( function() {
+        getSizes();
+      });
+		});
+	};
+})(jQuery, window);
+
+$(document).ready( function() {
+
+	$('.marquee').marqueeify({
+		speed: 100,
+		bumpEdge: function () {
+			var newColor = "hsl(" + Math.floor(Math.random()*360) + ", 100%, 50%)";
+			$('.marquee .logo').css('fill', newColor);
+		}
+	});
 });

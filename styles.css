@@ -1,37 +1,59 @@
+/* Add your cool CSS styles here */
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f2f2f2;
     margin: 0;
     padding: 0;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+
+header {
+    background: url('header-image.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 h1 {
-    color: #333;
+    font-size: 3em;
+}
+
+#features {
+    background-color: #222;
+    padding: 50px 0;
+}
+
+.feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.feature img {
+    max-width: 100px;
+}
+
+#cta {
+    background-color: #0074d9;
+    padding: 50px 0;
 }
 
 button {
-    padding: 10px 20px;
-    background-color: #0074d9;
+    background-color: #0056b3;
     color: #fff;
+    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    font-size: 1.2em;
     cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3;
-}
-
-#gameResult {
-    margin-top: 20px;
-    font-size: 24px;
-    color: #333;
-    font-weight: bold;
+    background-color: #003e7d;
 }

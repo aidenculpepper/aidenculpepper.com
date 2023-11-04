@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Redirect Page</title>
-    <script>
-      window.onload = function () {
-        // Use JavaScript to open a new browser tab with the message.
-        window.open("about:blank").document.write("Hello, World!");
-      };
-    </script>
+    <title>Passcode Page</title>
   </head>
   <body>
-    <!-- Content for browsers that do not support JavaScript or have it disabled -->
-    <p>If you are not redirected, <a href="about:blank">click here</a>.</p>
+    <div id="passcode-container">
+      <label for="passcode">Enter the passcode:</label>
+      <input type="text" id="passcode" />
+      <button id="submit-button">Submit</button>
+    </div>
+
+    <script>
+      const correctPasscode = "1101"; // Replace with your actual passcode
+
+      const submitButton = document.getElementById("submit-button");
+      const passcodeInput = document.getElementById("passcode");
+
+      submitButton.addEventListener("click", function () {
+        const enteredPasscode = passcodeInput.value;
+
+        if (enteredPasscode === correctPasscode) {
+          window.location.href = "about:blank";
+        } else {
+          alert("Incorrect passcode. Please try again.");
+          passcodeInput.value = ""; // Clear the input field
+        }
+      });
+    </script>
   </body>
 </html>

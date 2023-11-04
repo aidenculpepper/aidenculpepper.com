@@ -55,7 +55,6 @@
 				move.down();
 			}
 
-      // Make that shit responsive!
       $(window).resize( function() {
         getSizes();
       });
@@ -70,6 +69,7 @@ $(document).ready( function() {
 		bumpEdge: function () {
 			var newColor = "hsl(" + Math.floor(Math.random()*360) + ", 100%, 50%)";
 			$('.marquee .logo').css('fill', newColor);
+			$('.marquee').css('filter', `drop-shadow(0px 0px 20px ${newColor})` );
 		}
 	});
 });

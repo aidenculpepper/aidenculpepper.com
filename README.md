@@ -1,5 +1,5 @@
-# Aiden Culpepper — Portfolio
+# Aiden Culpepper portfolio wireframe
 
-Personal portfolio at https://aidenculpepper.com. Static HTML, CSS, and JavaScript, hosted through GitHub Pages. No build step required.
+Static GitHub Pages site. Home uses clearly labeled dummy projects. work.html includes CopyCheck Update 006 and placeholder projects.
 
-Edit index.html for content and style.css for the design. CopyCheck is featured without linking to its private repository. Contact links use the public GitHub profile.
+The public installer is served at downloads/CopyCheckSetup.exe. Preserve CNAME for the custom domain.
